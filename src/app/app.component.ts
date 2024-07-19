@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ForexComponent } from './components/forex/forex.component';
+import { HistoryComponent } from "./components/history/history.component";
+import { Operation } from './models/operation.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [ForexComponent, HistoryComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'forex-kata';
+
+  operations: Operation[] = [];
+
+  onOperation(operation: Operation): void {
+    let operations = this.operations;
+    operations.unshift(operation);
+    this.operations = operations.splice(0,5);
+  }
 }

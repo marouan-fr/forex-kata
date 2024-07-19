@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="form-group col-4">
+        <label for="input">{{ switchControl.value ? 'USD' : 'EUR'}}</label>
+        <input type="number" class="form-control" id="input" [formControl]="inputControl">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch" [formControl]="switchControl">
+            <label class="form-check-label" for="switch">USD</label>
+        </div>
+    </div>
+
+    <div class="col-4 text-center">
+        <div [class.text-decoration-line-through]="!disableForcedRate">
+            <label>Rate EUR->USD</label>
+            <p>{{rate}}</p>
+        </div>
+        <div class="form-group">
+            <label for="forceRate">Force rate</label>
+        <input type="number" class="form-control" id="forceRate" [formControl]="forceRateControl">
+        <small *ngIf="forceRateControl.value && disableForcedRate">Using real rate since this rate has more than 2%
+            difference</small>
+        </div>
+    </div>
+
+    <div class="col-4 text-center">
+        <label>{{ switchControl.value ? 'EUR' : 'USD'}}</label>
+        <p>{{value | currency : switchControl.value ? 'EUR' : 'USD'}}</p>
+    </div>
+
+</div>

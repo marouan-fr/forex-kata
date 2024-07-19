@@ -1,0 +1,19 @@
+<h2>History</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Initial</td>
+            <td>Rate</td>
+            <td>Forced Rate</td>
+            <td>Result</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let op of operations">
+            <td>{{op.input | currency : op.switch ? 'USD' : 'EUR'}}</td>
+            <td>{{op.rate}}</td>
+            <td>{{op.forcedRate || '-'}}</td>
+            <td>{{op.value | currency : op.switch ? 'EUR' : 'USD'}}</td>
+        </tr>
+    </tbody>
+</table>
